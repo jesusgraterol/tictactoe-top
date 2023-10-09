@@ -1,0 +1,389 @@
+/***********
+ * IMPORTS *
+ ***********/
+ 
+
+/* Font */
+@import url("modules/font.css");
+
+/* Material Icons */
+@import url("modules/material_icons.css");
+
+
+
+
+
+
+
+
+/***********
+ * GLOBALS *
+ ***********/
+:root {
+    --app-background-color: #f7f1f1;
+
+
+    --text-color: #312e2e;
+    --error-color: #B71C1C;
+    --light-text-color: #4e4949;
+
+
+    --header-height: 80px;
+    --mobile-header-height: 60px;
+}
+
+
+
+
+
+
+/*************
+ * SANITIZER *
+ *************/
+*, *::before, *::after { box-sizing: border-box; border:none; background-repeat: no-repeat; padding:0; margin: 0; }
+html {  word-break: break-word; scroll-behavior: smooth; color: var(--text-color)}
+img { max-width: 100%; }
+ul,ol { list-style: none;padding-left:0;}
+ul li, ol li { margin: 10px 0 10px 0; }
+ul li .md-icon, ol li .md-icon { vertical-align: middle;}
+.truncate { white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+
+
+
+
+
+/***********
+ * BUTTONS *
+ ***********/
+.btn {
+    text-decoration: none;
+    padding:15px;
+    background-color: #111111;
+    color:white;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+.btn:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+
+
+
+
+/************
+ * APP BODY *
+ ************/
+body {
+    font-family: "Montserrat", "Roboto", sans-serif;
+    background-color: #f7f1f1;
+    height: 100%;
+    width: 100%;
+}
+
+
+
+
+
+
+
+/*****************
+ * APP CONTAINER *
+ *****************/
+#app_container {
+
+}
+
+
+
+
+
+
+
+
+
+
+/**********
+ * HEADER *
+ **********/
+header {
+    height: var(--header-height);
+    padding:15px;
+    background-color: black;
+    color:white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px -1px rgba(0,0,0,0.20);
+}
+header h1{ 
+    margin-left: 7px;
+}
+header .btn {
+    margin-left: auto;
+}
+
+
+
+
+
+
+/********
+ * MAIN *
+ ********/
+main {
+    height: calc(100vh - var(--header-height))
+}
+
+
+
+
+
+
+/*************
+ * GAME MENU *
+ *************/
+#game_menu {
+    height: 100%;
+    padding:15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    display:none;
+}
+
+#game_menu > p {
+    text-align: center;
+}
+#game_menu > p:first-child { font-size: 1.2rem;}
+#game_menu > p:last-child { 
+    font-size: 0.9rem;
+    color: var(--light-text-color);
+}
+#game_menu a {
+    text-decoration: none;
+    font-weight: bold;
+    color: inherit
+}
+#game_menu a:hover { opacity: 0.5;}
+
+
+#game_menu #available_markers {
+    margin: 35px 0;
+    display: flex;
+    justify-content: center;
+}
+
+
+#game_menu #available_markers > p {
+    margin: 0 15px;
+    padding: 30px;
+    font-size: 2rem;
+    font-weight: 700;
+    background-color: white;
+    box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px -1px rgba(0,0,0,0.20);
+    text-align: center;
+    cursor: pointer;
+}
+#game_menu #available_markers > p:hover {
+    box-shadow: 0 12px 17px 2px rgba(0,0,0,0.14), 0 5px 22px 4px rgba(0,0,0,0.12), 0 7px 8px -4px rgba(0,0,0,0.20);
+    transform: scale(1.1);
+}
+
+
+
+
+
+
+
+
+/**************
+ * GAME BOARD *
+ **************/
+ #game_board_container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+#game_board {
+    background-color: white;
+    box-shadow: 0 12px 17px 2px rgba(0,0,0,0.14), 0 5px 22px 4px rgba(0,0,0,0.12), 0 7px 8px -4px rgba(0,0,0,0.20);
+    display: grid;
+    grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+
+}
+
+#game_board .item {
+    width: 100px;
+    height: 100px;
+    border:1px solid var(--light-text-color);
+    font-weight: bold;
+    font-size: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#game_board .item:nth-child(1) { border-top:0;border-left:0; }
+#game_board .item:nth-child(2) { border-top:0; }
+#game_board .item:nth-child(3) { border-top:0;border-right:0; }
+#game_board .item:nth-child(4) { border-left:0; }
+#game_board .item:nth-child(6) { border-right:0; }
+#game_board .item:nth-child(7) { border-bottom:0;border-left:0; }
+#game_board .item:nth-child(8) { border-bottom:0; }
+#game_board .item:nth-child(9) { border-bottom:0;border-right:0; }
+
+#game_board .item.available { cursor: pointer;}
+#game_board .item.unavailable { cursor: not-allowed;}
+
+#game_board .item span { color: #d8d0d0;visibility: hidden; }
+#game_board .item:hover { 
+    background-color: var(--app-background-color);
+}
+#game_board .item:hover span { 
+    visibility: visible;
+}
+
+
+
+
+
+
+
+
+/***************
+ * GAME RESULT *
+ ***************/
+#game_result {
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height:100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    color:white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+#game_result p {
+    font-size:3rem;
+    font-weight: 900;
+}
+#game_result button {
+    margin-top: 35px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/****************************
+ * RESPONSIVE MEDIA QUERIES *
+ ****************************/
+
+
+
+/*
+ * DEVICE: Desktops
+ * SCREEN: 1281px to higher resolution desktops
+ */
+@media (min-width: 1281px) {
+
+
+
+}
+ 
+ 
+/*
+ * DEVICE: Laptops, Desktops
+ * SCREEN: B/w 1025px to 1280px
+ */
+@media (min-width: 1025px) and (max-width: 1280px) {
+
+
+
+}
+ 
+ 
+/*
+ * DEVICE: Tablets, Ipads (portrait)
+ * SCREEN: B/w 768px to 1024px
+ */
+@media (min-width: 768px) and (max-width: 1024px) {
+
+
+}
+ 
+ 
+/*
+ * DEVICE: Tablets, Ipads (landscape)
+ * SCREEN: B/w 768px to 1024px
+ */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+
+}
+ 
+ 
+/*
+ * DEVICE: Low Resolution Tablets, Mobiles (Landscape)
+ * SCREEN: B/w 481px to 767px
+ */
+@media (min-width: 481px) and (max-width: 767px) {
+
+
+}
+
+ 
+ 
+/*
+ * DEVICE: Most of the Smartphones Mobiles (Portrait)
+ * SCREEN: 480px to lower resolution mobiles
+ */
+@media (max-width: 480px) {
+    /* Header */
+    header {
+        height: var(--mobile-header-height);
+        padding:15px 7px;
+    }
+    header h1{ 
+        font-size: 1.4rem;
+        margin-left:3px;
+    }
+    header .md-icon.md-48 { font-size: 34px; }
+    header .btn {
+        padding:10px;
+        font-size: 0.6rem;
+    }
+
+
+
+    /* Main */
+    main {
+        height: calc(100vh - var(--mobile-header-height))
+    }
+
+
+
+    /* Game Board */
+    #game_board .item {
+        width: 70px;
+        height: 70px;
+    }
+}

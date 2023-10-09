@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <!-- Charset -->
+        <meta charset="UTF-8">
+
+        <!-- Viewport -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Title -->
+        <title>Tic Tac Toe</title>
+
+        <!-- Favicon -->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+
+        <!-- Theme Color -->
+        <meta name="theme-color" content="#000000">
+
+        <!-- Stylesheet -->
+        <link rel="stylesheet" href="stylesheets/app.css">
+
+        <!-- Script -->
+        <script type="module" src="scripts/app.js" defer></script>
+
+    </head>
+    <body>
+        
+        <!-- App Container -->
+        <div id="app_container">
+
+            <!-- Header -->
+            <header>
+
+                <span class="md-icon md-48">stadia_controller</span>
+
+                <h1>Tic Tac Toe</h1>
+
+                <a  class="btn" 
+                    href="https://github.com/jesusgraterol/tictactoe_top" 
+                    target="_blank" 
+                    rel="noopener noreferrer">VIEW ON GITHUB</a>
+
+            </header>
+
+
+
+            <!-- Main Container -->
+            <main>
+                
+                <!-- Game Menu -->
+                <div id="game_menu">
+                    <p>Choose your marker</p>
+
+                    <div id="available_markers">
+                        <p role="button">X</p>
+                        <p role="button">O</p>
+                    </div>
+
+                    <p>
+                        Choose carefully! You'll be playing against an Artificial Intelligence Model 
+                        based on the 
+                        <a  href="https://en.wikipedia.org/wiki/Minimax" 
+                            target="_blank" 
+                            rel="noopener noreferrer">Minimax Algorithm</a>.
+                    </p>
+                </div>
+
+
+
+
+                <!-- Game Board Container -->
+                <div id="game_board_container">
+
+                    <!-- Game Score -->
+                    <div id="game_score">
+
+                    </div>
+
+                    <!-- Game Board -->
+                    <div id="game_board">
+                        <div class="item unavailable">X</div>
+                        <div class="item available"></div>
+                        <div class="item">O</div>
+                        <div class="item"></div>
+                        <div class="item"></div>
+                        <div class="item">X</div>
+                        <div class="item"></div>
+                        <div class="item"></div>
+                        <div class="item"><span>X</span></div>
+                    </div>
+
+                </div>
+
+            
+            </main>
+
+
+
+            <!-- Game Result -->
+            <div id="game_result">
+                <p id="game_results_title">IT'S A TIE!</p>
+                <button id="play_again_button" class="btn">PLAY AGAIN</button>
+            </div>
+
+        </div>
+
+    </body>
+
+</html>
