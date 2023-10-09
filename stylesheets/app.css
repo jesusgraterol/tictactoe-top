@@ -24,6 +24,7 @@
 
 
     --text-color: #312e2e;
+    --success-color: #0f766e;
     --error-color: #B71C1C;
     --light-text-color: #4e4949;
 
@@ -58,7 +59,7 @@ ul li .md-icon, ol li .md-icon { vertical-align: middle;}
 .btn {
     text-decoration: none;
     padding:15px;
-    background-color: #111111;
+    background-color: #1f1e1e;
     color:white;
     font-weight: bold;
     font-size: 0.8rem;
@@ -133,7 +134,12 @@ header .btn {
  * MAIN *
  ********/
 main {
-    height: calc(100vh - var(--header-height))
+    height: calc(100vh - var(--header-height));
+    padding:15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -145,18 +151,13 @@ main {
  * GAME MENU *
  *************/
 #game_menu {
-    height: 100%;
-    padding:15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    display:none;
+    max-width: 50%;
 }
 
 #game_menu > p {
     text-align: center;
 }
-#game_menu > p:first-child { font-size: 1.2rem;}
+#game_menu > p:first-child { font-size: 1.4rem;}
 #game_menu > p:last-child { 
     font-size: 0.9rem;
     color: var(--light-text-color);
@@ -201,53 +202,78 @@ main {
 /**************
  * GAME BOARD *
  **************/
- #game_board_container {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+/* #game_board_container {
+} */
 
 
 
 #game_board {
-    background-color: white;
-    box-shadow: 0 12px 17px 2px rgba(0,0,0,0.14), 0 5px 22px 4px rgba(0,0,0,0.12), 0 7px 8px -4px rgba(0,0,0,0.20);
+    box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px -1px rgba(0,0,0,0.20);
     display: grid;
     grid-template: repeat(3, 1fr) / repeat(3, 1fr);
-
+    gap:2px;
+    display: none;
 }
 
-#game_board .item {
+
+/* Cells */
+#game_board .cell {
+    background-color: white;
     width: 100px;
     height: 100px;
-    border:1px solid var(--light-text-color);
+    cursor: not-allowed;
     font-weight: bold;
     font-size: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-#game_board .item:nth-child(1) { border-top:0;border-left:0; }
-#game_board .item:nth-child(2) { border-top:0; }
-#game_board .item:nth-child(3) { border-top:0;border-right:0; }
-#game_board .item:nth-child(4) { border-left:0; }
-#game_board .item:nth-child(6) { border-right:0; }
-#game_board .item:nth-child(7) { border-bottom:0;border-left:0; }
-#game_board .item:nth-child(8) { border-bottom:0; }
-#game_board .item:nth-child(9) { border-bottom:0;border-right:0; }
 
-#game_board .item.available { cursor: pointer;}
-#game_board .item.unavailable { cursor: not-allowed;}
 
-#game_board .item span { color: #d8d0d0;visibility: hidden; }
-#game_board .item:hover { 
-    background-color: var(--app-background-color);
+
+/* Cell Availability */
+#game_board .cell.available { cursor: pointer;}
+
+/* Ripple effect */
+#game_board .available {
+    cursor: pointer;
+    background-position: center;
+    transition: background 0.5s;
 }
-#game_board .item:hover span { 
+#game_board .available:hover {
+    background: var(--app-background-color) radial-gradient(circle, transparent 1%, var(--app-background-color) 1%) center/15000%;
+}
+#game_board .available:active {
+    background-color: #FFFFFF;
+    background-size: 100%;
+    transition: background 0s;
+}
+
+
+
+
+
+
+/* Mocks */
+
+/* Cells By State */
+#game_board .cell.victory { color: var(--success-color); font-size: 4rem; }
+#game_board .cell.defeat { color: var(--error-color); font-size: 4rem; }
+
+
+
+#game_board .cell:hover { 
+    /* background-color: var(--app-background-color); */
+}
+
+
+
+/* #game_board .cell.available span { color: #d8d0d0;visibility: hidden; }
+#game_board .cell:hover span { 
     visibility: visible;
 }
+ */
+
 
 
 
@@ -259,27 +285,31 @@ main {
 /***************
  * GAME RESULT *
  ***************/
-#game_result {
+#game_result_container {
     position: absolute;
     top:0;
     left:0;
     width: 100%;
     height:100%;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.8);
     color:white;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     display: none;
+    z-index: 2;
 }
-#game_result p {
+#game_result_container p {
     font-size:3rem;
     font-weight: 900;
 }
-#game_result button {
+#game_result_container button {
     margin-top: 35px;
 }
+
+
+
 
 
 
@@ -374,6 +404,8 @@ main {
 
 
 
+    
+
     /* Main */
     main {
         height: calc(100vh - var(--mobile-header-height))
@@ -381,8 +413,20 @@ main {
 
 
 
+
+
+
+    /* Game Menu*/
+    #game_menu {
+        max-width: 100%;
+    }
+
+
+
+
+
     /* Game Board */
-    #game_board .item {
+    #game_board .cell {
         width: 70px;
         height: 70px;
     }

@@ -54,8 +54,8 @@
                     <p>Choose your marker</p>
 
                     <div id="available_markers">
-                        <p role="button">X</p>
-                        <p role="button">O</p>
+                        <p role="button" data-marker="X">X</p>
+                        <p role="button" data-marker="O">O</p>
                     </div>
 
                     <p>
@@ -63,44 +63,23 @@
                         based on the 
                         <a  href="https://en.wikipedia.org/wiki/Minimax" 
                             target="_blank" 
-                            rel="noopener noreferrer">Minimax Algorithm</a>.
+                            rel="noopener noreferrer">Minimax Algorithm</a>. Keep in mind the 
+                            <strong>cross marker</strong> plays first.
                     </p>
                 </div>
 
 
 
+                <!-- Game Board -->
+                <div id="game_board"> <!-- Handled by board.js --></div>
 
-                <!-- Game Board Container -->
-                <div id="game_board_container">
-
-                    <!-- Game Score -->
-                    <div id="game_score">
-
-                    </div>
-
-                    <!-- Game Board -->
-                    <div id="game_board">
-                        <div class="item unavailable">X</div>
-                        <div class="item available"></div>
-                        <div class="item">O</div>
-                        <div class="item"></div>
-                        <div class="item"></div>
-                        <div class="item">X</div>
-                        <div class="item"></div>
-                        <div class="item"></div>
-                        <div class="item"><span>X</span></div>
-                    </div>
-
-                </div>
-
-            
             </main>
 
 
 
             <!-- Game Result -->
-            <div id="game_result">
-                <p id="game_results_title">IT'S A TIE!</p>
+            <div id="game_result_container">
+                <p id="game_result_title">IT'S A TIE!</p>
                 <button id="play_again_button" class="btn">PLAY AGAIN</button>
             </div>
 
