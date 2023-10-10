@@ -45,7 +45,7 @@ export const Board = (() => {
 
         // Diagonal
         [0, 4, 8],
-        [2, 4, 6],
+        [2, 4, 6]
     ];
 
 
@@ -139,7 +139,7 @@ export const Board = (() => {
         _cell_els[cell_id].innerText = marker;
         
         // Check if the input won the game
-        if (_marker_wins(marker)) { _state = `${marker}_WINS` }
+        if (marker_wins(_cell_states, marker)) { _state = `${marker}_WINS` }
 
         // Otherwise, check if it is a tie
         else if (_cell_states.every((cell_state) => typeof cell_state == "string")) {
@@ -155,12 +155,13 @@ export const Board = (() => {
 
     /**
      * Verifies if the current marker's inputs contain a winning combination.
+     * @param {*} cell_states 
      * @param {*} marker 
      * @returns boolean
      */
-    function _marker_wins(marker) {
-        // Firstly, retrieve the marker's inputs
-        const marker_inputs = _get_marker_inputs(marker);
+    function marker_wins(cell_states, marker) {
+        // Extract the markers' inputs
+        const marker_inputs = _get_marker_inputs(cell_states, marker);
 
         // Before proceeding, ensure that at least 3 inputs have been made
         let marker_wins = false;
@@ -184,11 +185,12 @@ export const Board = (() => {
 
     /**
      * Retrieves the cell indexes that have been selected by a given marker.
+     * @param {*} cell_states 
      * @param {*} marker 
      * @returns Array<number>
      */
-    function _get_marker_inputs(marker) {
-        return _cell_states.reduce((accum, current, index) => { 
+    function _get_marker_inputs(cell_states, marker) {
+        return cell_states.reduce((accum, current, index) => { 
             if (current == marker) accum.push(index);
             return accum;
         }, []);
@@ -263,18 +265,35 @@ export const Board = (() => {
      */
     async function simulate_machine_thinking(machine_marker) {
         _state = "PROCESSING";
-        const available_cells = _cell_els.filter((cell) => cell.innerText == "");
-        available_cells.forEach((cell) => {
-            cell.classList.add("processing");
-            cell.innerText = machine_marker;
+        const available_cells = get_available_cells(_cell_states);
+        available_cells.forEach((id) => {
+            _cell_els[id].classList.add("processing");
+            _cell_els[id].innerText = machine_marker;
         });
         await sleep(1);
-        available_cells.forEach((cell) => {
-            cell.classList.remove("processing");
-            cell.innerText = "";
+        available_cells.forEach((id) => {
+            _cell_els[id].classList.remove("processing");
+            _cell_els[id].innerText = "";
         });
         _state = "READY";
     }
+
+
+
+
+
+    /**
+     * Retrieves a list with all the available cells' indexes.
+     * @param {*} cell_states
+     * @returns Array<number>
+     */
+    function get_available_cells(cell_states) {
+        return cell_states.reduce((accum, current, index) => { 
+            if (current === undefined) accum.push(index);
+            return accum;
+        }, []);
+    }
+
 
 
 
@@ -324,7 +343,9 @@ export const Board = (() => {
         get_game_board,
         start,
         process_input,
+        marker_wins,
         simulate_machine_thinking,
+        get_available_cells,
         has_game_ended
     }
 })();

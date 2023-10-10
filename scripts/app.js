@@ -132,7 +132,7 @@ import { Board } from "./modules/board.js";
         await Board.simulate_machine_thinking(machine.get_marker());
 
         // Process it
-        Board.process_input(machine.extract_input(Board.get_cell_states()), machine.get_marker());
+        Board.process_input(machine.extract_input(), machine.get_marker());
     }
 
 
@@ -206,5 +206,8 @@ import { Board } from "./modules/board.js";
             
         // Start the board
         Board.start();
+
+        // Check if the machine goes first
+        if (player.get_marker() == "O") _process_machine_input();
     }
 })();
