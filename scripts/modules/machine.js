@@ -1,6 +1,5 @@
 import { Player } from "./player.js"
 
-
 /**
  * Machine Factory
  * ...
@@ -19,6 +18,41 @@ export function Machine(player_marker) {
 
 
 
+    /****************************
+     * MACHINE INPUT EXTRACTION *
+     ****************************/
+
+
+
+
+
+    function extract_input(cell_states) {
+        return _extract_random_input(cell_states);
+    }
+
+
+
+
+
+    /**
+     * Extracts a completely random input based on the state of the cells.
+     * @param {*} cell_states 
+     * @returns 
+     */
+    function _extract_random_input(cell_states) {
+        let input;
+        while (input === undefined) {
+            const random_value = Math.floor(Math.random() * (8 - 0 + 1) + 0);
+            if (cell_states[random_value] === undefined) input = random_value;
+        }
+        return input;
+    }
+
+
+
+
+
+
 
 
 
@@ -26,6 +60,7 @@ export function Machine(player_marker) {
      * PUBLIC PROPERTIES/METHODS EXPOSURE *
      **************************************/
     return {
-        get_marker
+        get_marker,
+        extract_input
     }
 }

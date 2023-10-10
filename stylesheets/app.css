@@ -202,11 +202,6 @@ main {
 /**************
  * GAME BOARD *
  **************/
-/* #game_board_container {
-} */
-
-
-
 #game_board {
     box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px -1px rgba(0,0,0,0.20);
     display: grid;
@@ -234,19 +229,10 @@ main {
 /* Cell Availability */
 #game_board .cell.available { cursor: pointer;}
 
-/* Ripple effect */
-#game_board .available {
-    cursor: pointer;
-    background-position: center;
-    transition: background 0.5s;
-}
-#game_board .available:hover {
-    background: var(--app-background-color) radial-gradient(circle, transparent 1%, var(--app-background-color) 1%) center/15000%;
-}
-#game_board .available:active {
-    background-color: #FFFFFF;
-    background-size: 100%;
-    transition: background 0s;
+
+#game_board .cell.processing { 
+    cursor: not-allowed;
+    color: var(--app-background-color);
 }
 
 
@@ -254,25 +240,7 @@ main {
 
 
 
-/* Mocks */
 
-/* Cells By State */
-#game_board .cell.victory { color: var(--success-color); font-size: 4rem; }
-#game_board .cell.defeat { color: var(--error-color); font-size: 4rem; }
-
-
-
-#game_board .cell:hover { 
-    /* background-color: var(--app-background-color); */
-}
-
-
-
-/* #game_board .cell.available span { color: #d8d0d0;visibility: hidden; }
-#game_board .cell:hover span { 
-    visibility: visible;
-}
- */
 
 
 
