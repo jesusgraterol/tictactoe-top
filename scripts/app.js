@@ -187,7 +187,9 @@ import { Board } from "./modules/board.js";
             return "IT'S A TIE!";
         } else if (final_board_state == "X_WINS" && player.get_marker() == "X") {
             return "YOU WIN!";
-        } else {
+        } else if (final_board_state == "O_WINS" && player.get_marker() == "O") {
+            return "YOU WIN!";
+        }  else {
             return "YOU LOSE!";
         }
     }
