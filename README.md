@@ -2,7 +2,9 @@
 
 ![Tic Tac Toe](./readme-assets/screenshot-01.png)
 
-This application implements the popular Tic Tac Tow game and it is the submission for [The Odin Project: Tic Tac Toe](https://www.theodinproject.com/lessons/node-path-javascript-tic-tac-toe). The key features are:
+This application implements the popular Tic Tac Toe game and it is the submission for [The Odin Project: Tic Tac Toe](https://www.theodinproject.com/lessons/node-path-javascript-tic-tac-toe). 
+
+The key features are:
 
 - Any number of games can be played
 - The computer is an implementation of the Minimax algorithm
